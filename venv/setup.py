@@ -1,14 +1,18 @@
 import hashlib
 import json
 import time
+
 from uuid import uuid4
 from textwrap import dedent
 from flask import Flask, jsonify, request
 import blockchain as e
+
+
 app = Flask(__name__)
 node_identifier = str(uuid4()).replace('-', '')
 blockchain=e.Blockchain()
 @app.route('/transactions/new', methods=['POST'])
+
 def new_transaction():
     values = request.get_json()
 
@@ -23,6 +27,8 @@ def new_transaction():
     response = {'message': f'Transaction will be added to Block {index}'}
     return jsonify(response), 201
 @app.route('/mine', methods=['GET'])
+
+
 def mine():
     # We run the proof of work algorithm to get the next proof...
     last_block = blockchain.last_block
